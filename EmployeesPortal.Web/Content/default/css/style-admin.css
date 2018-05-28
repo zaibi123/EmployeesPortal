@@ -1,0 +1,345 @@
+﻿body{
+    background-color:white;
+}
+
+.ajaxloader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -64px; /* half width of the spinner gif */
+    margin-top: -64px; /* half height of the spinner gif */
+    text-align:center;
+    z-index:99999;
+    overflow: auto;
+    width: 128px; /* width of the spinner gif */
+    height: 130px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+div.AnyTime-win {z-index:9999}
+.validation-summary-valid { display:none; }
+
+/*Branding CSS*/
+.navbar-brand span {
+    font-family:'Segoe UI';
+    font-size:26px;
+}
+
+/*
+    * Ticket Table
+*/
+.table .table-ticket {
+
+}
+
+.table-ticket > thead > tr > th, .table-ticket > tbody > tr > th, .table-ticket > tfoot > tr > th, .table-ticket > thead > tr > td, .table-ticket > tbody > tr > td, .table-ticket > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+.table-ticket > tbody > tr > th, .table-ticket > tfoot > tr > th, .table-ticket > thead > tr > th {
+    line-height: 1.53846;
+    padding: 10px 8px;
+}
+
+.table-ticket > tbody > tr > td, .table-ticket > tfoot > tr > td, .table-ticket > thead > tr > td {
+    line-height: 1.53846;
+    padding: 5px 8px;
+}
+
+.ticketcontainer {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.ticketcontent {
+    float:left;
+    width: 80%;
+}
+
+.ticketactions {
+    float: right;
+    text-align:right;
+}
+.ticketaction {
+    cursor: pointer;
+    color: black;
+    padding: 2px;
+}
+
+.previewicon {
+    cursor: pointer;
+}
+
+.cursorpointer {
+    cursor: pointer;
+}
+
+.ticketstatusbar .btn {
+    line-height: 15px;
+    padding: 0 5px;
+    font-size: 10px;
+}
+
+.ticketstatusbar .active, .ticketstatusbar .btn-default:hover {
+    background-color: #2196f3;
+    border-color: #2196f3;
+    color: #ffffff;
+}
+
+.ticketstatusaction .btn {
+    line-height: 15px;
+    padding: 0 2px;
+    font-size: 10px;
+}
+
+.ticketstatusaction .caret::after {
+    font-size: 12px;
+}
+
+.ticketstatusaction .active {
+    background-color: #2196f3;
+    border-color: #2196f3;
+    color: #ffffff;
+}
+
+.tooltip-inner {
+    max-width: 1000px !important;
+}
+/*CUstom*/
+#topbucket {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index:9999;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+    -webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+
+    -webkit-transform: translate(0px, -100%) scale(0, 0);
+	-moz-transform: translate(0px, -100%) scale(0, 0);
+	-o-transform: translate(0px, -100%) scale(0, 0);
+	-ms-transform: translate(0px, -100%) scale(0, 0);
+	transform: translate(0px, -100%) scale(0, 0);
+    
+    opacity: 0;
+}
+#topbucket .panel {
+    margin-top:2% !important;
+    margin-left:2% !important;
+}
+
+#topbucket.open {
+    -webkit-transform: translate(0px, 0px) scale(1, 1);
+    -moz-transform: translate(0px, 0px) scale(1, 1);
+	-o-transform: translate(0px, 0px) scale(1, 1);
+	-ms-transform: translate(0px, 0px) scale(1, 1);
+	transform: translate(0px, 0px) scale(1, 1); 
+    opacity: 1;
+}
+
+
+#topbucket .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+	background-color: limegreen;
+	border-color: green;
+	opacity: 1;
+	padding: 10px 17px;
+	font-size: 27px;
+    z-index:9999;
+}
+.glockbucketpanel {
+    margin-top: -2% !important;
+    padding-left: 0 !important;
+    width: 100%;
+}
+.showSweetAlert 
+{
+
+    z-index:9999 !important;
+    border:solid black 2px;
+}
+.bucketinfo{
+     white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis; 
+   
+}
+.tooltip{
+    z-index:100000000 !important;
+}
+.bucketinfo:hover span {
+    white-space: normal;  
+    color:white;
+    width:200%!important;
+    text-overflow: initial; 
+    background-color:black;
+   overflow:visible !important;
+   z-index:99999 !important;
+}
+.bucketdescription
+{
+    width:100%;
+}
+.bucketitem{
+    padding: 1px 20px !important;
+}
+
+.padding-10 {
+    padding: 10px !important;
+}
+
+.filteredcontainer .navigation .label, .navigation .badge {
+    position: absolute;
+    right: 5px;
+}
+
+.sidebar-default .navigation li > a.active {
+    background-color: #f5f5f5;
+}
+.deletenotemsg:hover
+{
+    color:red;
+    cursor:pointer;
+}
+.logo-bg {
+    background-color: gainsboro;
+    padding: 1.5%;
+}
+
+	
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input[type="checkbox"]:checked + input[type="hidden"] + .slider,
+input[type="checkbox"]:checked + .slider {
+  background-color: #0cacb8;
+}
+
+input[type="checkbox"]:focus + input[type="hidden"] + .slider,
+input[type="checkbox"]:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input[type="checkbox"]:checked + input[type="hidden"] + .slider:before,
+input[type="checkbox"]:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.slider p {
+    margin-bottom: 0;
+    margin-left: 5px;
+    margin-top: 6px;
+    font-weight: bold;
+    color:white;
+}
+.column-header {background: #0cacb8;color: #fff;text-transform: uppercase;text-align: center;margin-bottom: 20px;}
+.form-wrapper {background: #eeeeee;padding-top:20px;}
+.btn {border-radius: 10px !important;}
+.banner-area {background:url("/Content/images/header_bg.png");background-size:100%;background-position:top center;background-repeat:no-repeat;color:#ffffff;margin-bottom:20px;}
+.banner-area h1 {text-align: center;padding: 7.5% 15px;text-transform: uppercase;font-size: 45px;text-shadow: 1px 1px 15px #000;}
+.req {font-size:18px;}
+h5.panel-title, .h5.panel-title {
+    font-size: 26px;
+    font-family: Neutraface;
+    color: #0cacb8 !important;
+}
+
+.educationrowmargin {margin-top:10px;}
+.visiblecheckbox {visibility:hidden;}
+hr.customhr{
+margin-top: 20px;
+margin-bottom: 20px;
+border-top: 4px solid #ddd;
+}
+.font12 {font-size:12px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="number"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="url"],
+input[type="tel"],
+textarea,
+.form-control
+{
+border:none !important;border-bottom: solid 1px #c3c3c3 !important;border-radius: 0 !important;
+}
+placeholder {font-size:15px;
+}
+.btn-info {background-color: #e5e5e5 !important;border-color: #e5e5e5 !important;}
+.btn-info:focus, .btn-info.focus, .btn-info:hover {background-color: #e5e5e5 !important;border-color: #e5e5e5 !important;}
+.file {visibility: hidden;position: absolute;}
+.input-group .form-control {border-bottom: none !important;background: #e5e5e5;border-radius: 5px 0 0px 5px !important;}
+.browse {background: #0cacb8 !important;border-radius: 0 5px 5px 0 !important;border: solid 1px #0cacb8;}
+.browse:hover {border: solid 1px #0cacb8 !important;}
+.btn-primary {background-color: #0cacb8;border-color: #0cacb8;}
+.align-center {text-align:center;}
+
+
+
+
+
+@media only screen and (min-width: 1025px) and (max-width: 1199px) {
+.font12 {font-size:10px;}
+
+}
+
+@media(max-width:640px) {
+    .content {padding: 0px;}
+    .banner-area {background-size:cover;}
+    label {display: block;}
+}

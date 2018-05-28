@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Law Preview</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
+
+    <!-- Core JS files -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/corejs")
+    @Scripts.Render("~/Scripts/loginjs")
+    @RenderSection("scripts", required: false)
+
+</head>
+<body class="bg-slate-800">
+    <!-- Page container -->
+    <div class="page-container login-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content area -->
+                <div class="content">
+                    @RenderBody()
+                    <!-- Footer -->
+                    <div class="footer text-white">
+                        &copy; @DateTime.Now.Year. <a href="#">Law Preview Forms</a> By <a href="http://www.computan.com/" target="_blank">Computan</a>
+                    </div>
+                    <!-- /footer -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+
+</body>
+</html>

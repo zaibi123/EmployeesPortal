@@ -1,0 +1,69 @@
+﻿@model computan.lawpreviewforms.Models.LoginViewModel
+
+@{
+    Layout = "~/Areas/admin/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Log in";
+}
+
+<!-- Page container -->
+<div class="page-container login-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Content area -->
+            <div class="content">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="panel panel-body login-form">
+                        <div class="text-center">
+                            <img src="~/Content/images/logo-law-preview.svg" alt="Law Preview" style="height: 80px; width: 280px;" />
+                            <h5 class="content-group-lg">
+                                Login to Dashboard <small class="display-block">Enter your credentials</small>
+                            </h5>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group has-feedback has-feedback-left">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Username" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback has-feedback-left">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="form-group login-options">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="checkbox-inline">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    @*@Html.ActionLink("Forget your password?", "ForgotPassword")*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn bg-blue btn-block">Login <i class="icon-circle-right2 position-right"></i></button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /content area -->
+        </div>
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+</div>
+<!-- /page container -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
