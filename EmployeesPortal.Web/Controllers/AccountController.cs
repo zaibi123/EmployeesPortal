@@ -72,12 +72,26 @@ namespace EmployeesPortal.Web.Controllers
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
+            ApplicationUser user = UserManager.FindByName(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Sorry, the username or password is invalid.");
+                return View("Login", model);
+            }
+            //if (user.isac == false)
+            //{
+            //    ModelState.AddModelError("", "Sorry, this user is not active. please contact administrator.");
+            //    return View("Login", model);
+            //}
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe); // <- true/false
+                    Session["User"] = user;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
+
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });

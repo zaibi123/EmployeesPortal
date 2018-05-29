@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
+using EmployeesPortal.Web.Helpers;
 
 namespace EmployeesPortal.Web.Controllers
 {
+    [CustomAuthorizeAttribute(Roles = "Admin")]
     public class HomeController : Controller
     {
         public ActionResult Index()

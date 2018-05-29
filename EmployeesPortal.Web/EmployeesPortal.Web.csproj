@@ -240,7 +240,6 @@
     </Compile>
     <Compile Include="Helpers\CustomAuthorizeAttribute.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
-    <Compile Include="Helpers\UrlSlugger.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

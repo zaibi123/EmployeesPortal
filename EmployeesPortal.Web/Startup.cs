@@ -1,5 +1,8 @@
-﻿using Owin;
+﻿using Microsoft.Owin;
+using Owin;
+using System.Reflection;
 
+[assembly: OwinStartup(typeof(EmployeesPortal.Web.Startup))]
 namespace EmployeesPortal.Web
 {
     public partial class Startup

@@ -5,44 +5,48 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace computan.lawpreviewforms.Helpers
+namespace EmployeesPortal.Web.Helpers
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        public CustomAuthorizeAttribute(params string[] roles) : base()
         {
-            if (filterContext == null)
+            Roles = string.Join(",", roles);
+        }
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            if (httpContext == null) throw new ArgumentNullException("httpContext");
+
+            // Make sure the user is authenticated.
+            if (httpContext.User.Identity.IsAuthenticated == true && httpContext.Session["User"] != null && ((Roles.Contains("Admin") == httpContext.User.IsInRole("Admin")) || (Roles.Contains("User") == httpContext.User.IsInRole("User"))))
             {
-                throw new ArgumentNullException("filterContext");
+                return true;
             }
-            var areaName = filterContext.RouteData.DataTokens["area"];
-            if (areaName.Equals("admin"))
+
+            return false;
+        }
+        protected override void HandleUnauthorizedRequest(AuthorizationContext context)
+        {
+            if (context.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "Account", action = "Login", area = "admin" }));
-            }
-            else if (areaName.Equals("lawfirm"))
-            {
-                filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "Account", action = "Login", area = "lawfirm" }));
+                var urlHelper = new UrlHelper(context.RequestContext);
+                context.HttpContext.Response.StatusCode = 403;
+                context.Result = new JsonResult
+                {
+                    Data = new
+                    {
+                        Error = "NotAuthorized",
+                        LogOnUrl = urlHelper.Action("LogOn", "Account")
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
             else
             {
-                filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "Account", action = "Login" }));
+                context.Result = new RedirectToRouteResult(new
+                                        RouteValueDictionary(new { controller = "Account", action = "Login", returnUrl = context.HttpContext.Request.Url.GetComponents(UriComponents.PathAndQuery, UriFormat.SafeUnescaped) }));
             }
-
-            //if (filterContext.HttpContext.User.Identity.IsAuthenticated)
-            //{
-            //    base.HandleUnauthorizedRequest(filterContext);
-            //}
-            //else
-            //{
-                
-            //    // other conditions...
-
-            //}
         }
     }
 }

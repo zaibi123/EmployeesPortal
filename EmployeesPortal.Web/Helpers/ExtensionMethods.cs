@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace computan.lawpreviewforms.Helpers
+namespace EmployeesPortal.Web.Helpers
 {
     public static class ExtensionMethods
     {

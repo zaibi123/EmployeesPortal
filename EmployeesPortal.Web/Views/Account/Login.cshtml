@@ -1,7 +1,7 @@
-﻿@model computan.lawpreviewforms.Models.LoginViewModel
+﻿@model EmployeesPortal.Web.Models.LoginViewModel
 
 @{
-    Layout = "~/Areas/admin/Views/Shared/_LayoutLogin.cshtml";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
     ViewBag.Title = "Log in";
 }
 
@@ -18,7 +18,7 @@
                     @Html.AntiForgeryToken()
                     <div class="panel panel-body login-form">
                         <div class="text-center">
-                            <img src="~/Content/images/logo-law-preview.svg" alt="Law Preview" style="height: 80px; width: 280px;" />
+                            @*<img src="~/Content/images/logo-law-preview.svg" alt="Law Preview" style="height: 80px; width: 280px;" />*@
                             <h5 class="content-group-lg">
                                 Login to Dashboard <small class="display-block">Enter your credentials</small>
                             </h5>
