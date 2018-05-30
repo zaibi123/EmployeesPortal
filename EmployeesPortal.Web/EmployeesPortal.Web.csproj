@@ -229,6 +229,22 @@
     <Compile Include="Contexts\EmployeePortalMigration\201805271844464_DepartmentTable.Designer.cs">
       <DependentUpon>201805271844464_DepartmentTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201805301825537_AddPostCategoryTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201805301825537_AddPostCategoryTable.Designer.cs">
+      <DependentUpon>201805301825537_AddPostCategoryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201805301835119_addPostTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201805301835119_addPostTable.Designer.cs">
+      <DependentUpon>201805301835119_addPostTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201805301839345_addPostDetailTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201805301839345_addPostDetailTable.Designer.cs">
+      <DependentUpon>201805301839345_addPostDetailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201805301947381_addnewsFeedTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201805301947381_addnewsFeedTable.Designer.cs">
+      <DependentUpon>201805301947381_addnewsFeedTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contexts\EmployeePortalMigration\Configuration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -292,6 +308,11 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\placeholder.jpg" />
     <Content Include="Contexts\EmployeePortalScript\201805271817045_InitialTimesheetDatabaseScript.sql" />
+    <Content Include="Contexts\EmployeePortalScript\201805271844464_DepartmentTable.sql" />
+    <Content Include="Contexts\EmployeePortalScript\201805301825537_AddPostCategoryTable.sql" />
+    <Content Include="Contexts\EmployeePortalScript\201805301835119_addPostTable.sql" />
+    <Content Include="Contexts\EmployeePortalScript\201805301839345_addPostDetailTable.sql" />
+    <Content Include="Contexts\EmployeePortalScript\201805301947381_addnewsFeedTable.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -3018,6 +3039,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contexts\EmployeePortalMigration\201805271844464_DepartmentTable.resx">
       <DependentUpon>201805271844464_DepartmentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201805301825537_AddPostCategoryTable.resx">
+      <DependentUpon>201805301825537_AddPostCategoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201805301835119_addPostTable.resx">
+      <DependentUpon>201805301835119_addPostTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201805301839345_addPostDetailTable.resx">
+      <DependentUpon>201805301839345_addPostDetailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201805301947381_addnewsFeedTable.resx">
+      <DependentUpon>201805301947381_addnewsFeedTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

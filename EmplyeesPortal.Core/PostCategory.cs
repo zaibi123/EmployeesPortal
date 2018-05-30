@@ -1,23 +1,20 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace EmplyeesPortal.Core
 {
-    public class Department:BaseEntity
+  public   class PostCategory:BaseEntity
     {
         public long id { get; set; }
-        [DisplayName("Department Name")]
+        [DisplayName("Category Name")]
         public string name { get; set; }
         [DisplayName("IsActive")]
         public Boolean isactive { get; set; }
 
         public virtual ICollection<Post> Post { get; set; }
-        public virtual ICollection<PostDetail> PostDetail { get; set; }
     }
 }

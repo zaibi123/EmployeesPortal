@@ -48,6 +48,11 @@ namespace EmployeesPortal.Web.Contexts
         }
 
         public DbSet<Department> Department { get; set; }
+        public DbSet<Post> Post { get; set; }
+        public DbSet<PostCategory> PostCategory { get; set; }
+       public DbSet<PostDetail> PostDetail { get; set; }
+        public DbSet<NewsFeed> NewsFeed { get; set; }
+
 
 
     }
