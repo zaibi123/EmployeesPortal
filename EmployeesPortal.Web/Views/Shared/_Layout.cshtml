@@ -44,7 +44,7 @@
                                 <i class="caret"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="/admin/account/changepassword"><i class="icon-lock5"></i>Change Password</a></li>
+                                <li><a href="/account/changepassword"><i class="icon-lock5"></i>Change Password</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="icon-switch2"></i> Logout</a></li>
                             </ul>
@@ -67,7 +67,7 @@
                                 <div class="media-body">
                                     <span class="media-heading text-semibold">@User.Identity.Name</span>
                                     <div class="text-size-mini text-muted">
-                                        <i class="icon-pin text-size-small"></i> &nbsp;Ontario, Canada
+                                        <i class="icon-pin text-size-small"></i> &nbsp;Lahore, Pakistan
                                     </div>
                                 </div>
                                 <div class="media-right media-middle">
@@ -88,7 +88,8 @@
                                 <!-- Main -->
                                 <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
                                 <li class='@(ViewBag.currentTab == "home" ? "active" : "")'><a href="/home/"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-                                <li class='@(ViewBag.currentTab == "genericform" ? "active" : "")'><a href="/department/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Departments</span></a></li>
+                                <li class='@(ViewBag.currentTab == "departments" ? "active" : "")'><a href="/department/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Departments</span></a></li>
+                                <li class='@(ViewBag.currentTab == "postcategory" ? "active" : "")'><a href="/postcategory/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Post Categories</span></a></li>
                                 
                              
                                    

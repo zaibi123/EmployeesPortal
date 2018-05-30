@@ -1,0 +1,78 @@
+﻿@model EmplyeesPortal.Core.Department
+@{
+    ViewBag.Title = "Create-Departments";
+}
+@section scripts {
+    @Scripts.Render("~/Scripts/datatables")
+    @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+    <script src="~/Scripts/plugins/jquery.alphanum.js"></script>
+}
+@section header {
+    <div style="background-color: #fff;" class="panel page-header border-top-primary">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h5>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Departments</span>
+                    <small class="display-block">add,list and search Departments </small>
+                </h5>
+            </div>
+            <div class="heading-elements">
+                <div class="btn-group">
+                    <a href="/Department/create" class="btn btn-primary"><i class="icon-add position-left"></i> New Department</a>
+                    <a href="/Department/index" class="btn btn-primary"><i class="icon-add position-left"></i> List All Departments</a>
+                </div>
+            </div>
+            <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+        </div>
+        <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/home/"><i class="icon-home2 position-left"></i> Home</a></li>
+                <li><a href="/Department/index">Departments</a></li>
+                <li><a href="/Department/create">Add Department</a></li>
+            </ul>
+        </div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="tabbable">
+            <ul class="nav nav-tabs nav-tabs-highlight">
+                <li class="active">
+                    @Html.ActionLink("Departments", "index", "Department",  new { @class = "fa fa-tasks label-icon-sm" })
+                </li>
+            </ul>
+            <div class="tab-content">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                       
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.isactive, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.CheckBoxFor(model => model.isactive, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.isactive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <a href="/department/index" class="btn btn-default"> Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

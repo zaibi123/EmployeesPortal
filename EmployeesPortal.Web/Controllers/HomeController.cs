@@ -3,7 +3,7 @@ using EmployeesPortal.Web.Helpers;
 
 namespace EmployeesPortal.Web.Controllers
 {
-    [CustomAuthorizeAttribute(Roles = "Admin")]
+    [CustomAuthorizeAttribute(Roles = "Admin,Employee")]
     public class HomeController : Controller
     {
         public ActionResult Index()
