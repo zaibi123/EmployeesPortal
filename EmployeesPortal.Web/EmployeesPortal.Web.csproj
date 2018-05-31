@@ -248,9 +248,11 @@
     <Compile Include="Contexts\EmployeePortalMigration\Configuration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostCategoryController.cs" />
+    <Compile Include="Controllers\AdminPostController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3027,10 +3029,17 @@
     <Content Include="Views\PostCategory\Create.cshtml" />
     <Content Include="Views\PostCategory\Edit.cshtml" />
     <Content Include="Views\PostCategory\Index.cshtml" />
+    <Content Include="Views\AdminPost\Create.cshtml" />
+    <Content Include="Views\AdminPost\Edit.cshtml" />
+    <Content Include="Views\AdminPost\Index.cshtml" />
+    <Content Include="Views\EPost\Create.cshtml" />
+    <Content Include="Views\EPost\Edit.cshtml" />
+    <Content Include="Views\EPost\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\default\plugins\datatables\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

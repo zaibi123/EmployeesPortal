@@ -20,6 +20,7 @@ namespace EmployeesPortal.Web.Controllers
         // GET: Admin/Department
         public ActionResult Index()
         {
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
             return View(db.Department.Where(x => x.isactive == true).ToList());
         }
 
@@ -32,6 +33,7 @@ namespace EmployeesPortal.Web.Controllers
         // GET: Admin/Department/Create
         public ActionResult Create()
         {
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
             return View();
         }
 
@@ -73,6 +75,7 @@ namespace EmployeesPortal.Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
             return View(Departments);
         }
 

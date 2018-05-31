@@ -91,7 +91,19 @@
                                 <li class='@(ViewBag.currentTab == "departments" ? "active" : "")'><a href="/department/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Departments</span></a></li>
                                 <li class='@(ViewBag.currentTab == "postcategory" ? "active" : "")'><a href="/postcategory/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Post Categories</span></a></li>
                                 
-                             
+                                @foreach (var item in ViewBag.poscategories)
+                                {
+                                    <li class='@(ViewBag.currentTab == "features" ? "active" : "")'>
+                                        <a href="#" class="has-ul"><i class="icon-grid"></i><span>@item.name</span></a>
+                                        <ul class="hidden-ul" style="display: @(ViewBag.currentTab == "features" ? "block" : "none");">
+                                            <li class='@(ViewBag.currentSubTab == "ipdiveristyapps" + item.id ? "active" : "")'>@Html.ActionLink("Chapters", "Index", "AdminPost", new { id = item.id }, null)</li>
+                                            @*<li class='@(ViewBag.currentSubTab == "divfirms"+ item.id ? "active" : "")'>@Html.ActionLink("Law Firms", "Index", "lawfirms", new { area = "admin", id = item.id }, null)</li>
+                                            <li class='@(ViewBag.currentSubTab == "divschools"+ item.id ? "active" : "")'>@Html.ActionLink("Law Schools", "Index", "lawschools", new { area = "admin", id = item.id }, null)</li>
+                                            <li class='@(ViewBag.currentSubTab == "divsessions"+ item.id ? "active" : "")'>@Html.ActionLink("LP Sessions", "Index", "lpsessions", new { area = "admin", id = item.id }, null)</li>*@
+
+                                        </ul>
+                                    </li>
+                                }
                                    
                             </ul>
                         </div>

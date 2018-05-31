@@ -1,0 +1,81 @@
+﻿@model IEnumerable<EmplyeesPortal.Core.Department>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "All - Departments";
+}
+@section scripts {
+    @Scripts.Render("~/Scripts/datatables")
+    <script src="~/Scripts/plugins/jquery.alphanum.js"></script>
+}
+<!-- Page header -->
+@section header {
+    <div style="background-color: #fff;" class="panel page-header border-top-primary">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h5>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Departments</span>
+                    <small class="display-block">add,list and search</small>
+                </h5>
+            </div>
+            <div class="heading-elements">
+                <div class="btn-group">
+                    <a href="/Department/create/" class="btn btn-primary"><i class="icon-add position-left"></i> New Department</a>
+                    <a href="/Department/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Departments</a>
+                </div>
+            </div>
+            <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+        </div>
+        <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/Home/"><i class="icon-home2 position-left"></i> Home</a></li>
+                <li><a href="/Department/index/">Departments</a></li>
+            </ul>
+        </div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="tabbable">
+            <ul class="nav nav-tabs nav-tabs-highlight">
+                <li class="active">
+                    @Html.ActionLink("Departments", "Index", "Departments", new { @class = "fa fa-tasks label-icon-sm" })
+                </li>
+            </ul>
+            <div class="tab-content">
+                <table class="table datatable-button-html5-basic" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+                                @Html.DisplayNameFor(model => model.name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.isactive)
+                            </th>
+                           
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.isactive)
+                                </td>
+                               
+                                <td class="text-center">
+                                    @Html.ActionLink("Edit", "Edit", "Department", new { id = item.id }, new { @class = "btn btn-primary btn-xs" })
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

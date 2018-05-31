@@ -25,10 +25,12 @@ namespace EmplyeesPortal.Core
         [DisplayName("IsActive")]
         public Boolean isactive { get; set; }
 
+        [DisplayName("Department")]
         public long departmentid { get; set; }
         [ForeignKey("departmentid")]
         public virtual Department Department { get; set; }
 
+        [DisplayName("Post Category")]
         public long postcategoryid { get; set; }
         [ForeignKey("postcategoryid")]
       
