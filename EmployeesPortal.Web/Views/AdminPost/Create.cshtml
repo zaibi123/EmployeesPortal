@@ -12,14 +12,14 @@
             <div class="page-header-content">
                 <div class="page-title">
                     <h5>
-                        <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Book Chapters</span>
+                        <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage @ViewBag.postcategoryType Chapters</span>
                         <small class="display-block">add,list and search</small>
                     </h5>
                 </div>
                 <div class="heading-elements">
                     <div class="btn-group">
-                        <a href="/Adminpost/create/" class="btn btn-primary"><i class="icon-add position-left"></i> New Book Chapter</a>
-                        <a href="/Adminpost/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Book Chapters</a>
+                        <a href="/Adminpost/create/@ViewBag.postcategoryid" class="btn btn-primary"><i class="icon-add position-left"></i> New @ViewBag.postcategoryType Chapter</a>
+                        <a href="/Adminpost/index/@ViewBag.postcategoryid" class="btn btn-primary"><i class="icon-add position-left"></i> List All @ViewBag.postcategoryType Chapters</a>
                     </div>
                 </div>
                 <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
@@ -27,8 +27,8 @@
             <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
                 <ul class="breadcrumb">
                     <li><a href="/Home/"><i class="icon-home2 position-left"></i> Home</a></li>
-                    <li><a href="/Adminpost/index/">List All Book Chapters</a></li>
-                    <li><a href="/Adminpost/create">Add Book Chapter</a></li>
+                    <li><a href="/Adminpost/index/@ViewBag.postcategoryid">List All @ViewBag.postcategoryType Chapters</a></li>
+                    <li><a href="/Adminpost/create/@ViewBag.postcategoryid">Add @ViewBag.postcategoryType Chapter</a></li>
                 </ul>
             </div>
         </div>
@@ -38,17 +38,17 @@
             <div class="tabbable">
                 <ul class="nav nav-tabs nav-tabs-highlight">
                     <li class="active">
-                      @Html.ActionLink("Book Chapters", "Index", "Adminpost", new { @class = "fa fa-tasks label-icon-sm" })
+                      @Html.ActionLink("Chapters", "Index", "Adminpost",new { id= ViewBag.postcategoryid }, new { @class = "fa fa-tasks label-icon-sm" })
                     </li>
                 </ul>
                 <div class="tab-content">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("create","AdminPost",FormMethod.Post, new { enctype= "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="row">
+                           
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
@@ -56,39 +56,42 @@
                                         @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.searchingwords, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.searchingwords, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.searchingwords, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                           
-                            
-                                <div class="col-md-6">
                                     <div class="form-group">
                                         @*@Html.LabelFor(model => model.departmentid, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                                        @Html.Label("Deaprtment")
-                                      
-                                            @Html.DropDownListFor(model => model.departmentid, null,"Select Department", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.Label("Deaprtment", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownListFor(model => model.departmentid, null, "Select Department", new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.departmentid, "", new { @class = "text-danger" })
-                                       
-                                    </div>
-                                    </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        @*@Html.LabelFor(model => model.postcategoryid, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                                        @Html.Label("Post Category")
-                                       
-                                            @Html.DropDownListFor(model => model.postcategoryid,null,"Select Post Category Type", new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                  
+                              
+                                    @*<div class="form-group">
+                                        
+                                        @Html.Label("Post Category",htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownListFor(model => model.postcategoryid, null, "Select Post Category Type", new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.postcategoryid, "", new { @class = "text-danger" })
-                                       
-                                    </div>
-                                </div>
+                                            </div>
+
+                                        </div>*@
                                 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="col-md-6">
+                           
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.isactive, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
@@ -96,8 +99,7 @@
                                             @Html.ValidationMessageFor(model => model.isactive, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    </div>
-                                <div class="col-md-6">
+                                 
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.chapter_no, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
@@ -105,10 +107,9 @@
                                             @Html.ValidationMessageFor(model => model.chapter_no, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </div>
-                                </div>
+                               
                               
-
+                            <input type="hidden" value="@ViewBag.postcategoryid" name="postcategoryid"/>
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Create" class="btn btn-primary" />

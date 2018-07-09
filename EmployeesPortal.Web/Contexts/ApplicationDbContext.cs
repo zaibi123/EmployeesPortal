@@ -52,8 +52,11 @@ namespace EmployeesPortal.Web.Contexts
         public DbSet<PostCategory> PostCategory { get; set; }
        public DbSet<PostDetail> PostDetail { get; set; }
         public DbSet<NewsFeed> NewsFeed { get; set; }
+        public DbSet<UploadImages> UploadImages { get; set; }
 
-
-
+        public DbSet<PostClickCount> PostClickCount { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<State> State { get; set; }
     }
 }

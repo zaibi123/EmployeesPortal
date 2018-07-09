@@ -1,0 +1,98 @@
+﻿@model EmplyeesPortal.Core.Country
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Country</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.iso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iso3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iso3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nicename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nicename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phonecode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phonecode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdonutc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdonutc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedonutc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedonutc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ipused)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ipused)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

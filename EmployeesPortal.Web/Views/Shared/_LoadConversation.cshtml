@@ -1,0 +1,24 @@
+﻿@model EmployeesPortal.Web.Models.PostCommentVM
+@{
+    Layout = null;
+}
+
+
+            <div class="tab-content">
+                <h1>Comments</h1>
+                <div id="commentSection">
+                    @foreach (var item in Model.commentlist)
+                    {
+                        <div class="control-label">
+                            <h5>@Html.Raw(item.comment)</h5>@Html.Raw("Comment By") @Html.Raw(item.commentbyUserName)
+                            
+                           
+                        </div>
+
+
+                    }
+                </div>
+    
+            </div>
+       
+

@@ -1,0 +1,122 @@
+﻿@model EmployeesPortal.Web.Models.PostCommentVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Book Chapters";
+}
+@section scripts {
+    @Scripts.Render("~/Scripts/datatables")
+    <script src="~/Scripts/plugins/jquery.alphanum.js"></script>
+}
+<!-- Page header -->
+@section header {
+    <div style="background-color: #fff;" class="panel page-header border-top-primary">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h5>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage @ViewBag.postcategoryType Chapters</span>
+                    <small class="display-block">add,list and search</small>
+                </h5>
+            </div>
+            <div class="heading-elements">
+                <div class="btn-group">
+                    <a href="/Adminpost/create/@ViewBag.postcategoryid" class="btn btn-primary"><i class="icon-add position-left"></i> New @ViewBag.postcategoryType Chapter</a>
+                    <a href="/Adminpost/index/@ViewBag.postcategoryid" class="btn btn-primary"><i class="icon-add position-left"></i> List All @ViewBag.postcategoryType Chapters</a>
+                </div>
+            </div>
+            <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+        </div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="tabbable">
+
+            <div class="tab-content">
+                <div class="row">
+                    <h3>
+                        @Model.Post.title
+                    </h3>
+                   
+                </div>
+                <div class="row">
+                    @MvcHtmlString.Create(HttpUtility.HtmlDecode(Model.Post.Description))
+
+                </div>
+                @*<div class="row">
+                    <button class="btn btn-primary" value="Please Proceed with Registration of Post" id="understandbuton">Please Proceed with Registration of Post</button>
+                </div>*@
+            </div>
+
+            @Html.Partial("_LoadConversation")
+           
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="understandmodel" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Register the post</h4>
+            </div>
+            <div class="modal-body" id="modelstatusdiv">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.Label("Please check if you have read the book", htmlAttributes: new { @class = "control-label col-md-8" })
+                        <div class="col-md-4">
+                            @Html.CheckBox("isread", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Please check if you have understand the book", htmlAttributes: new { @class = "control-label col-md-8" })
+                        <div class="col-md-4">
+                            @Html.CheckBox("isunderstand", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="reset" id="btnclosemultipletask" value="Add" class="btn btn-primary btnclosemultipletask" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  /*  $(function () {
+
+        $(document).on("click", ".postcomment", function () {
+            var url = '/epost/savecomment';
+            var postid = $(this).attr("data-postid");
+            var commentval = $(".commentval").val();
+            alert(postid);
+            alert(commentval);
+            $.ajax({
+                url: url,
+                data: {
+                    id: postid,
+                    comment:commentval
+
+                },
+            }).done(function (data) {
+
+                $("#commentSection").appendTo('<div class="control-label"><h5>' + data.comment + '</h5></div>')
+            });
+            return false;
+        });
+       
+        jQuery(document).on('click', '#understandbuton', function () {
+            $('#understandmodel').modal('toggle');
+
+            return false;
+        });
+
+        window.onbeforeunload = function (e) {
+            return 'Are you sure you want to leave this page?  You will lose any unsaved data.';
+        };
+
+
+    });*/
+</script>

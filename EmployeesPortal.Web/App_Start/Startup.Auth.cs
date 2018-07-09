@@ -6,6 +6,7 @@ using EmployeesPortal.Web.Models;
 using Owin;
 using System;
 using EmployeesPortal.Web.Contexts;
+using EmplyeesPortal.Core;
 
 namespace EmployeesPortal.Web
 {

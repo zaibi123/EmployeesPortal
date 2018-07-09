@@ -16,16 +16,80 @@ namespace EmployeesPortal.Web.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: EmpPost
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
-            return View();
+            return View(db.Post.Where(x => x.isactive == true && x.postcategoryid == id).ToList());
         }
 
         // GET: EmpPost/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            PostCommentVM postcomment = new PostCommentVM();
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
+            postcomment.commentlist = db.Comments.Where(x=>x.postid== id).ToList();
+            postcomment.Post= db.Post.Find(id);
+            return View(postcomment);
+        }
+        public ActionResult savecomment(long id, string comment)
+        {
+            Comments Comments = new Comments();
+            Comments.comment = comment;
+            Comments.postid = id;
+            Comments.commentDate = System.DateTime.UtcNow;
+            Comments.createdonutc = System.DateTime.UtcNow;
+            Comments.updatedonutc = System.DateTime.UtcNow;
+            Comments.ipused = Request.UserHostAddress;
+            Comments.userid = User.Identity.GetUserId();
+            Comments.commentbyUserId = User.Identity.GetUserId();
+            Comments.commentbyUserName = User.Identity.GetUserName();
+            db.Comments.Add(Comments);
+            db.SaveChanges();
+            return Json(new {success= true, commentText=comment, commentBy= User.Identity.GetUserName() });
+        }
+
+        public ActionResult RegisterReadPost(long postid, int isread, int isunderstand)
+        {
+            PostDetail pdetail = new PostDetail();
+
+            var post = db.Post.Find(postid);
+
+            if (post != null) {
+                pdetail.postid = post.id;
+                pdetail.departmentid = post.departmentid;
+                pdetail.postcategoryid = post.postcategoryid;
+                pdetail.employeeid = User.Identity.GetUserId();
+               // pdetail.isread = isread;
+               // pdetail.isunderstand = isunderstand;
+                pdetail.createdonutc = System.DateTime.UtcNow;
+                pdetail.updatedonutc = System.DateTime.UtcNow;
+                pdetail.ipused = Request.UserHostAddress;
+                pdetail.userid = User.Identity.GetUserId();
+                pdetail.lastvisitdate = System.DateTime.UtcNow;
+                pdetail.firstvisitdate = System.DateTime.UtcNow;
+                db.PostDetail.Add(pdetail);
+                db.SaveChanges();
+            }
+
+            return Json(new { success = true });
+
+        }
+
+        public ActionResult PostClickSave(long id)
+        {
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
+            PostClickCount postclick = new PostClickCount();
+            postclick.postid = id;
+            postclick.postclickby = User.Identity.GetUserId().ToString();
+            postclick.postclickdate = System.DateTime.UtcNow.ToString();
+            postclick.createdonutc = System.DateTime.UtcNow;
+            postclick.updatedonutc = System.DateTime.UtcNow;
+            postclick.ipused = Request.UserHostAddress;
+            postclick.userid = User.Identity.GetUserId();
+            db.PostClickCount.Add(postclick);
+            db.SaveChanges();
+            return RedirectToAction("Details","epost",new { id=id});
+            //return Json(new { success = true, successtext="click view added."});
         }
 
         // GET: EmpPost/Create

@@ -1,36 +1,81 @@
-﻿@model IEnumerable<EmployeesPortal.Web.Models.ApplicationUser>
-
+﻿@model IEnumerable<EmplyeesPortal.Core.ApplicationUser>
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "All - Users";
 }
+@section scripts {
+    @Scripts.Render("~/Scripts/datatables")
+    <script src="~/Scripts/plugins/jquery.alphanum.js"></script>
+}
+<!-- Page header -->
+@section header {
+    <div style="background-color: #fff;" class="panel page-header border-top-primary">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h5>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Users</span>
+                    <small class="display-block">add,list and search</small>
+                </h5>
+            </div>
+            <div class="heading-elements">
+                <div class="btn-group">
+                    <a href="/UsersAdmin/create/" class="btn btn-primary"><i class="icon-add position-left"></i> New User</a>
+                    <a href="/UsersAdmin/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Users</a>
+                </div>
+            </div>
+            <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+        </div>
+        <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/Home/"><i class="icon-home2 position-left"></i> Home</a></li>
+                <li><a href="/UsersAdmin/index/">Users</a></li>
+            </ul>
+        </div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="tabbable">
+            <ul class="nav nav-tabs nav-tabs-highlight">
+                <li class="active">
+                    @Html.ActionLink("Users", "Index", "UsersAdmin", new { @class = "fa fa-tasks label-icon-sm" })
+                </li>
+            </ul>
+            <div class="tab-content">
+                <table class="table datatable-button-html5-basic" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th>@Html.Display("First Name")</th>
+                            <th>@Html.Display("Last Name")</th>
+                          <th>@Html.Display("Role")</th>
 
-<h2>Index</h2>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                               <th>@item.FirstName</th>
+                                <th>@item.LastName</th>
+                                <th></th>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
+                                <td class="text-center">
+                                    @*@Html.ActionLink("Edit", "Edit", "Department", new { id = item.id }, new { @class = "btn btn-primary btn-xs" })*@
+                                </td>
 
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

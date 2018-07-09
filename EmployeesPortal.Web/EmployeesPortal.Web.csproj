@@ -245,8 +245,50 @@
     <Compile Include="Contexts\EmployeePortalMigration\201805301947381_addnewsFeedTable.Designer.cs">
       <DependentUpon>201805301947381_addnewsFeedTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806060713118_uploadimagesTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806060713118_uploadimagesTable.Designer.cs">
+      <DependentUpon>201806060713118_uploadimagesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806061305403_postclicktable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806061305403_postclicktable.Designer.cs">
+      <DependentUpon>201806061305403_postclicktable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806061536565_updatetable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806061536565_updatetable.Designer.cs">
+      <DependentUpon>201806061536565_updatetable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806061551480_updatetableagain.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806061551480_updatetableagain.Designer.cs">
+      <DependentUpon>201806061551480_updatetableagain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806061859256_CommentTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806061859256_CommentTable.Designer.cs">
+      <DependentUpon>201806061859256_CommentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806081729178_AlterTableCOmments.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806081729178_AlterTableCOmments.Designer.cs">
+      <DependentUpon>201806081729178_AlterTableCOmments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806091947177_updateTablePostDetail.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806091947177_updateTablePostDetail.Designer.cs">
+      <DependentUpon>201806091947177_updateTablePostDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806091955075_altertabletest.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806091955075_altertabletest.Designer.cs">
+      <DependentUpon>201806091955075_altertabletest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201806092303316_countrystateTable.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201806092303316_countrystateTable.Designer.cs">
+      <DependentUpon>201806092303316_countrystateTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\EmployeePortalMigration\201807092111168_AddChapterNameColumn.cs" />
+    <Compile Include="Contexts\EmployeePortalMigration\201807092111168_AddChapterNameColumn.Designer.cs">
+      <DependentUpon>201807092111168_AddChapterNameColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contexts\EmployeePortalMigration\Configuration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -254,7 +296,9 @@
     <Compile Include="Controllers\PostCategoryController.cs" />
     <Compile Include="Controllers\AdminPostController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
-    <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Controllers\StatesController.cs" />
+    <Compile Include="Controllers\UploadImagesController.cs" />
+    <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,8 +306,10 @@
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PostCommentVM.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ResetUserPassword.cs" />
+    <Compile Include="Models\UploadImagesVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2792,14 +2838,6 @@
     <Content Include="Scripts\default\plugins\select2option\select2option.css" />
     <Content Include="Scripts\default\plugins\select2option\select2option.js" />
     <Content Include="Scripts\default\plugins\select2option\style.css" />
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -2932,18 +2970,19 @@
     <Content Include="Scripts\default\plugins\select2option\README.md" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
+    <None Include="Properties\PublishProfiles\test1.pubxml" />
+    <None Include="Properties\PublishProfiles\test2.pubxml" />
+    <None Include="Properties\PublishProfiles\test3.pubxml" />
     <Content Include="Scripts\handlebars-v4.0.11.js" />
+    <None Include="Properties\PublishProfiles\test4.pubxml" />
+    <None Include="Properties\PublishProfiles\test5.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -2954,20 +2993,14 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\plugins\jquery.alphanum.js" />
-    <Content Include="Scripts\popper-utils.js" />
-    <Content Include="Scripts\popper-utils.min.js" />
-    <Content Include="Scripts\popper.js" />
-    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\umd\popper-utils.js" />
-    <Content Include="Scripts\umd\popper-utils.min.js" />
-    <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3001,16 +3034,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\UsersAdmin\Index.cshtml" />
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\Details.cshtml" />
     <Content Include="Views\UsersAdmin\Delete.cshtml" />
@@ -3035,17 +3058,34 @@
     <Content Include="Views\EPost\Create.cshtml" />
     <Content Include="Views\EPost\Edit.cshtml" />
     <Content Include="Views\EPost\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\PasswordResetConfirm.cshtml" />
+    <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
+    <Content Include="Views\UploadImages\Index.cshtml" />
+    <Content Include="Views\UploadImages\Create.cshtml" />
+    <Content Include="Views\EPost\Details.cshtml" />
+    <Content Include="Views\Shared\_LoadConversation.cshtml" />
+    <Content Include="Views\Shared\_AddComment.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Delete.cshtml" />
+    <Content Include="Views\Countries\Details.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\States\Create.cshtml" />
+    <Content Include="Views\States\Delete.cshtml" />
+    <Content Include="Views\States\Details.cshtml" />
+    <Content Include="Views\States\Edit.cshtml" />
+    <Content Include="Views\States\Index.cshtml" />
+    <Content Include="Views\AdminPost\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\default\plugins\datatables\" />
-    <Folder Include="Uploads\" />
+    <Folder Include="Uploads\PostImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -3068,6 +3108,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contexts\EmployeePortalMigration\201805301947381_addnewsFeedTable.resx">
       <DependentUpon>201805301947381_addnewsFeedTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806060713118_uploadimagesTable.resx">
+      <DependentUpon>201806060713118_uploadimagesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806061305403_postclicktable.resx">
+      <DependentUpon>201806061305403_postclicktable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806061536565_updatetable.resx">
+      <DependentUpon>201806061536565_updatetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806061551480_updatetableagain.resx">
+      <DependentUpon>201806061551480_updatetableagain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806061859256_CommentTable.resx">
+      <DependentUpon>201806061859256_CommentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806081729178_AlterTableCOmments.resx">
+      <DependentUpon>201806081729178_AlterTableCOmments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806091947177_updateTablePostDetail.resx">
+      <DependentUpon>201806091947177_updateTablePostDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806091955075_altertabletest.resx">
+      <DependentUpon>201806091955075_altertabletest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201806092303316_countrystateTable.resx">
+      <DependentUpon>201806092303316_countrystateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\EmployeePortalMigration\201807092111168_AddChapterNameColumn.resx">
+      <DependentUpon>201807092111168_AddChapterNameColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

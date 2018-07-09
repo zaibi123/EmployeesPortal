@@ -92,7 +92,7 @@ namespace EmployeesPortal.Web.Controllers
                     PostCategory.updatedonutc = DateTime.UtcNow;
                     PostCategory.ipused = Request.UserHostAddress;
                     PostCategory.userid = User.Identity.GetUserId();
-                    db.Entry(PostCategory).State = EntityState.Modified; ;
+                    db.Entry(PostCategory).State = EntityState.Modified; 
                     db.SaveChanges();
                 }
 

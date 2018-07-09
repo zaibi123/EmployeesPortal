@@ -1,51 +1,173 @@
 ﻿@model EmployeesPortal.Web.Models.EditUserViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit User";
 }
 
-<h2>Edit.</h2>
-
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Edit User Form.</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-               @Html.ValidationMessageFor(model => model.Email)
+@section header {
+    <div style="background-color: #fff;" class="panel page-header border-top-primary">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h5>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Timesheet</span> - Manage Application Users
+                    <small class="display-block">Manage Application Users</small>
+                </h5>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Roles", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                @foreach (var item in Model.RolesList)
-                {
-                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
-                }
-            </span>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="heading-elements">
+                <div class="btn-group">
+                    <a href="/UsersAdmin/index" class="btn btn-primary"><i class="icon-list3 position-left"></i> List Users</a>
+                </div>
             </div>
+            <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+        </div>
+        <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/Home/index"><i class="icon-home2 position-left"></i>Home</a></li>
+                <li><a href="/UsersAdmin/index">Users</a></li>
+                <li><a href="/UsersAdmin/create">Add New Application</a></li>
+            </ul>
         </div>
     </div>
 }
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+            </ul>
+        </div>
+        <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+    </div>
+    <div class="panel-body">
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+        @using (Html.BeginForm("Edit", "UsersAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Edit User</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+                <input type="hidden" value="no" id="myprofileid" name="myprofileid" />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                    <span class=" col-md-10">
+                        @foreach (var item in Model.RolesList)
+                        {
+                            if (item.Selected == true)
+                            {
+                            <input type="checkbox" id="@item.Value" name="SelectedRole" value="@item.Value" checked="checked" class="checkbox-inline" />
+                            <label class="control-label" for="@item.Value">@item.Text</label>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="@item.Value" name="SelectedRole" value="@item.Value"  class="checkbox-inline" />
+                                <label class="control-label" for="@item.Value">@item.Text</label>
+                            }
+                        }
+                    </span>
+                </div>
+              
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @required = "required" })
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.StateId, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.StateId, ViewBag.statelist as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CountryId, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.CountryId, ViewBag.countrylist as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Zip, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Mobile, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ProfileImage, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.ProfileImage, new { type = "file", @class = "input-file" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.isactive, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.isactive, new { @class = "Checkbox" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
+
+
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+   @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/select2")
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#StateId").select2({ width: 350 });
+        $("#CountryId").select2({ width: 350 });
+        $("#Levelid").select2({ width: 350 });
+    });
+</script>

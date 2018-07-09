@@ -1,0 +1,82 @@
+﻿@model IEnumerable<EmplyeesPortal.Core.UploadImages>
+@{
+    ViewBag.Title = "Upload Images";
+}
+@section scripts {
+    @Scripts.Render("~/Scripts/datatables")
+    @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+    <script src="~/Scripts/plugins/jquery.alphanum.js"></script>
+}
+@section header {
+    <div style="background-color: #fff;" class="panel page-header border-top-primary">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h5>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Upload Images</span>
+                    <small class="display-block">add,list and search</small>
+                </h5>
+            </div>
+            <div class="heading-elements">
+                <div class="btn-group">
+                    <a href="/uploadimages/create/" class="btn btn-primary"><i class="icon-add position-left"></i> New Image Upload</a>
+                    <a href="/uploadimages/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Images</a>
+                </div>
+            </div>
+            <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
+        </div>
+        <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/Home/"><i class="icon-home2 position-left"></i> Home</a></li>
+                <li><a href="/uploadimages/index/">List All Images</a></li>
+                <li><a href="/uploadimages/create">New Image</a></li>
+            </ul>
+        </div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="tabbable">
+            <ul class="nav nav-tabs nav-tabs-highlight">
+                <li class="active">
+                    @Html.ActionLink("Images", "Index", "uploadimages", new { @class = "fa fa-tasks label-icon-sm" })
+                </li>
+            </ul>
+            <div class="tab-content">
+                <table class="table datatable-button-html5-basic" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
+                                @Html.DisplayNameFor(model => model.images)
+                            </th>
+                            <th>
+                                @Html.DisplayName("Image Path")
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">
+                                    <img src="/Uploads/PostImages/@item.images"  width="100" height="100"/>
+                                    @*@Html.DisplayFor(modelItem => item.images)*@
+                                </td>
+                                <td>
+                                    @Html.Raw("/Uploads/PostImages/")@Html.Raw(item.images)
+                                </td>
+
+                                <td class="text-center">
+                                    @*@Html.ActionLink("Edit", "Edit", "Department", new { id = item.id }, new { @class = "btn btn-primary btn-xs" })*@
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

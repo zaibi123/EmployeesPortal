@@ -31,6 +31,13 @@ namespace EmployeesPortal.Web.Controllers
             return View();
         }
 
+        public ActionResult LoadChapters(int id)
+        {
+            var list = db.Post.Where(x => x.postcategoryid == id).ToList();
+
+            return Json(new {success= true, chapterlist= list });
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

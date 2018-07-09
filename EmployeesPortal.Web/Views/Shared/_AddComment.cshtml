@@ -1,0 +1,20 @@
+﻿@model EmployeesPortal.Web.Models.PostCommentVM
+    @{
+        Layout = null;
+    }
+
+    <div class="tab-content">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.comment, new { htmlAttributes = new { @class = "form-control commentval" } })
+                    @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <input type="button" data-postid=@Model.Post.id value="Post Comment" class="btn btn-primary postcomment" />
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>

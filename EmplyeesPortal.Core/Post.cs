@@ -13,6 +13,8 @@ namespace EmplyeesPortal.Core
     {
         public long id { get; set; }
 
+        [DisplayName("Chapter Name")]
+        public string chaptername { get; set; }
         [DisplayName("Chapter Title")]
         public string title { get; set; }
         [DisplayName("Chapter Number")]

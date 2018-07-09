@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using System.Web;
 using System.Web.Mvc;
 using EmployeesPortal.Web.Models;
@@ -18,11 +17,13 @@ namespace EmployeesPortal.Web.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Post
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
-
-            return View(db.Post.Where(x=>x.isactive== true).ToList());
+            var categorytype = db.PostCategory.Find(id);
+            ViewBag.postcategoryType = categorytype.name;
+            ViewBag.postcategoryid = categorytype.id;
+            return View(db.Post.Where(x=>x.isactive== true && x.postcategoryid==id).ToList());
         }
 
         // GET: Post/Details/5
@@ -31,24 +32,46 @@ namespace EmployeesPortal.Web.Controllers
             return View();
         }
 
+        public ActionResult View(int id)
+        {
+            PostCommentVM postcomment = new PostCommentVM();
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
+            postcomment.commentlist = db.Comments.Where(x => x.postid == id).ToList();
+            postcomment.Post = db.Post.Find(id);
+            var categorytype = db.PostCategory.Find(postcomment.Post.postcategoryid);
+            ViewBag.postcategoryType = categorytype.name;
+            ViewBag.postcategoryid = categorytype.id;
+            return View(postcomment);
+           // return View();
+        }
         // GET: Post/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             // TODO: Add insert logic here
             ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
             ViewBag.departmentid = new SelectList(db.Department.Where(x => x.isactive == true), "id", "name");
             ViewBag.postcategoryid = new SelectList(db.PostCategory.Where(x => x.isactive == true), "id", "name");
+            var categorytype = db.PostCategory.Find(id);
+            ViewBag.postcategoryType = categorytype.name;
+            ViewBag.postcategoryid = categorytype.id;
             return View();
         }
 
         // POST: Post/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Post post)//[Bind(Include = "id, title,chapter_no,searchingwords,Description,isactive,departmentid,postcategoryid")] Post post)
         {
             try
             {
-             
-                return RedirectToAction("Index");
+                post.createdonutc = DateTime.UtcNow;
+                post.updatedonutc = DateTime.UtcNow;
+                post.userid = User.Identity.GetUserId();
+                post.ipused = Request.UserHostAddress;
+                db.Post.Add(post);
+                db.SaveChanges();
+                return RedirectToAction("Index", "adminpost", new { id= post.postcategoryid});
             }
             catch
             {
@@ -59,18 +82,33 @@ namespace EmployeesPortal.Web.Controllers
         // GET: Post/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.poscategories = db.PostCategory.Where(x => x.isactive == true).OrderBy(x => x.id).ToList();
+           
+            ViewBag.departmentid = new SelectList(db.Department.Where(x => x.isactive == true), "id", "name");
+            ViewBag.postcategoryid = new SelectList(db.PostCategory.Where(x => x.isactive == true), "id", "name");
+            var adminpost = db.Post.Find(id);
+            var categorytype = db.PostCategory.Find(adminpost.postcategoryid);
+            ViewBag.postcategoryType = categorytype.name;
+            ViewBag.postcategoryid = categorytype.id;
+            return View(adminpost);
         }
 
         // POST: Post/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Post post)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                post.createdonutc = post.createdonutc;
+                post.updatedonutc = DateTime.UtcNow;
+                post.userid = User.Identity.GetUserId();
+                post.ipused = Request.UserHostAddress;
+                db.Entry(post).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "adminpost", new { id= post.postcategoryid});
             }
             catch
             {

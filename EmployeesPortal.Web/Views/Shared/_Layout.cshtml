@@ -85,25 +85,59 @@
                     <div class="sidebar-category sidebar-category-visible">
                         <div class="category-content no-padding">
                             <ul class="navigation navigation-main navigation-accordion">
-                                <!-- Main -->
-                                <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                                <li class='@(ViewBag.currentTab == "home" ? "active" : "")'><a href="/home/"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-                                <li class='@(ViewBag.currentTab == "departments" ? "active" : "")'><a href="/department/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Departments</span></a></li>
-                                <li class='@(ViewBag.currentTab == "postcategory" ? "active" : "")'><a href="/postcategory/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Post Categories</span></a></li>
+                               
                                 
-                                @foreach (var item in ViewBag.poscategories)
+                                @if (User.IsInRole("Admin"))
                                 {
-                                    <li class='@(ViewBag.currentTab == "features" ? "active" : "")'>
-                                        <a href="#" class="has-ul"><i class="icon-grid"></i><span>@item.name</span></a>
-                                        <ul class="hidden-ul" style="display: @(ViewBag.currentTab == "features" ? "block" : "none");">
-                                            <li class='@(ViewBag.currentSubTab == "ipdiveristyapps" + item.id ? "active" : "")'>@Html.ActionLink("Chapters", "Index", "AdminPost", new { id = item.id }, null)</li>
-                                            @*<li class='@(ViewBag.currentSubTab == "divfirms"+ item.id ? "active" : "")'>@Html.ActionLink("Law Firms", "Index", "lawfirms", new { area = "admin", id = item.id }, null)</li>
-                                            <li class='@(ViewBag.currentSubTab == "divschools"+ item.id ? "active" : "")'>@Html.ActionLink("Law Schools", "Index", "lawschools", new { area = "admin", id = item.id }, null)</li>
-                                            <li class='@(ViewBag.currentSubTab == "divsessions"+ item.id ? "active" : "")'>@Html.ActionLink("LP Sessions", "Index", "lpsessions", new { area = "admin", id = item.id }, null)</li>*@
+                                    <!-- Main -->
+                                    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                                    <li class='@(ViewBag.currentTab == "home" ? "active" : "")'><a href="/home/"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+                                   
 
+                                   
+
+                                    foreach (var item in ViewBag.poscategories)
+                                    {
+                                        <li class='@(ViewBag.currentTab == "features" ? "active" : "")'>
+                                            <a href="#" class="has-ul"><i class="icon-grid"></i><span>@item.name</span></a>
+                                            <ul class="hidden-ul" style="display: @(ViewBag.currentTab == "features" ? "block" : "none");">
+                                                <li class='@(ViewBag.currentSubTab == "ipdiveristyapps" + item.id ? "active" : "")'>@Html.ActionLink("Chapters", "Index", "AdminPost", new { id = item.id }, null)</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    <li class='@(ViewBag.currentTab== "features" ? "active" : "")'>
+                                        <a href="#" class="has-ul"><i class="icon-grid"></i><span>Manage Features</span></a>
+                                        <ul class="hidden-ul" style="display: @(ViewBag.currentTab== "features" ? "block" : "none");">
+                                            <li class='@(ViewBag.currentTab == "departments" ? "active" : "")'><a href="/department/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Departments</span></a></li>
+                                            <li class='@(ViewBag.currentTab == "postcategory" ? "active" : "")'><a href="/postcategory/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Post Categories</span></a></li>
+                                            <li class='@(ViewBag.currentTab == "postimages" ? "active" : "")'><a href="/UploadImages/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Upload Images</span></a></li>
+                                            <li class='@(ViewBag.currentTab == "usersadmin" ? "active" : "")'><a href="/UsersAdmin/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Manage Users</span></a></li>
+                                            <li class='@(ViewBag.currentTab == "Countriestab" ? "active" : "")'><a href="/Countries/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Manage Countries</span></a></li>
+                                            <li class='@(ViewBag.currentTab == "statestab" ? "active" : "")'><a href="/States/index"><i class="glyphicon glyphicon-list-alt"></i> <span>Manage State</span></a></li>
                                         </ul>
                                     </li>
+
                                 }
+                                else
+                                {
+                                    foreach (var item in ViewBag.poscategories)
+                                    { }
+                                       <li>
+                                            <a href="#" data-postcategory="1" class="loadbookmenu"><i class="icon-grid"></i><span>HMS/HSE Book</span></a>
+                                            <ul class="hidden-ul">
+                                                @*<li class='@(ViewBag.currentSubTab == "ipdiveristyapps" + item.id ? "active" : "")'>@Html.ActionLink("Chapters", "Index", "EPost", new { id = item.id }, null)</li>*@
+                                            </ul>
+                                     </li>
+                                    <li>
+                                        <a href="#" data-postcategory="2" class="loadbookmenu"><i class="icon-grid"></i><span>Manuals and routine plans</span></a>
+                                        <ul class="hidden-ul">
+                                            @*<li class='@(ViewBag.currentSubTab == "ipdiveristyapps" + item.id ? "active" : "")'>@Html.ActionLink("Chapters", "Index", "EPost", new { id = item.id }, null)</li>*@
+                                        </ul>
+                                    </li>
+
+                                }
+
+                               
                                    
                             </ul>
                         </div>

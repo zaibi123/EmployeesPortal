@@ -18,10 +18,10 @@ namespace EmplyeesPortal.Core
         public long postid { get; set; }
         public string employeeid { get; set; }
 
-        public Boolean is_read { get; set; }
-        public Boolean is_understand { get; set; }
-        public DateTime first_visit_date { get; set; }
-        public DateTime last_visit_date { get; set; }
+        public Boolean isread { get; set; }
+        public Boolean isunderstand { get; set; }
+        public DateTime firstvisitdate { get; set; }
+        public DateTime lastvisitdate { get; set; }
 
         [ForeignKey("departmentid")]
         public virtual Department Department { get; set; }

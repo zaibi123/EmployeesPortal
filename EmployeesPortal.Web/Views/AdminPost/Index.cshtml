@@ -13,14 +13,14 @@
         <div class="page-header-content">
             <div class="page-title">
                 <h5>
-                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Book Chapters</span>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage @ViewBag.postcategoryType Chapters</span>
                     <small class="display-block">add,list and search</small>
                 </h5>
             </div>
             <div class="heading-elements">
                 <div class="btn-group">
-                    <a href="/Adminpost/create/" class="btn btn-primary"><i class="icon-add position-left"></i> New Book Chapter</a>
-                    <a href="/Adminpost/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Book Chapters</a>
+                    <a href="/Adminpost/create/@ViewBag.postcategoryid" class="btn btn-primary"><i class="icon-add position-left"></i> New @ViewBag.postcategoryType Chapter</a>
+                    <a href="/Adminpost/index/@ViewBag.postcategoryid" class="btn btn-primary"><i class="icon-add position-left"></i> List All @ViewBag.postcategoryType Chapters</a>
                 </div>
             </div>
             <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
@@ -28,7 +28,7 @@
         <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
             <ul class="breadcrumb">
                 <li><a href="/Home/"><i class="icon-home2 position-left"></i> Home</a></li>
-                <li><a href="/Adminpost/index/">List All Book Chapters</a></li>
+                <li><a href="/Adminpost/index/@ViewBag.postcategoryid">List All @ViewBag.postcategoryType Chapters</a></li>
             </ul>
         </div>
     </div>
@@ -38,7 +38,7 @@
         <div class="tabbable">
             <ul class="nav nav-tabs nav-tabs-highlight">
                 <li class="active">
-                    @Html.ActionLink("Book Chapters", "Index", "Adminpost", new { @class = "fa fa-tasks label-icon-sm" })
+                    @Html.ActionLink("Chapters", "Index", "Adminpost",new {id= ViewBag.postcategoryid }, new { @class = "fa fa-tasks label-icon-sm" })
                 </li>
             </ul>
             <div class="tab-content">
@@ -54,9 +54,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.searchingwords)
                             </th>
-                            <th>
+                            @*<th>
                                 @Html.DisplayNameFor(model => model.Description)
-                            </th>
+                            </th>*@
                            <th>
                                @Html.DisplayNameFor(model => model.createdonutc)
                            </th>
@@ -79,9 +79,9 @@
                                 <td class="sorting_1">
                                     @Html.DisplayFor(modelItem => item.searchingwords)
                                 </td>
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.Description)
-                                </td>
+                                </td>*@
                                 <td class="sorting_1">
                                     @Html.DisplayFor(modelItem => item.createdonutc)
                                 </td>
@@ -90,6 +90,7 @@
                                 </td>
                                
                                 <td class="text-center">
+                                    @Html.ActionLink("View", "View", "AdminPost", new { id = item.id }, new { @class = "btn btn-primary btn-xs", target="_blank" })
                                     @Html.ActionLink("Edit", "Edit", "AdminPost", new { id = item.id }, new { @class = "btn btn-primary btn-xs" })
                                 </td>
                             </tr>

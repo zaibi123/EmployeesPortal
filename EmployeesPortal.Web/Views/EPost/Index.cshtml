@@ -1,7 +1,7 @@
-﻿@model IEnumerable<EmplyeesPortal.Core.Department>
+﻿@model IEnumerable<EmplyeesPortal.Core.Post>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "All - Departments";
+    ViewBag.Title = "All - Book Chapters";
 }
 @section scripts {
     @Scripts.Render("~/Scripts/datatables")
@@ -10,72 +10,77 @@
 <!-- Page header -->
 @section header {
     <div style="background-color: #fff;" class="panel page-header border-top-primary">
-        <div class="page-header-content">
+        @*<div class="page-header-content">
+            <a href="~/Views/EPost/Index.cshtml"></a>
             <div class="page-title">
                 <h5>
-                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Departments</span>
+                    <i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Book Chapters</span>
                     <small class="display-block">add,list and search</small>
                 </h5>
             </div>
             <div class="heading-elements">
                 <div class="btn-group">
-                    <a href="/Department/create/" class="btn btn-primary"><i class="icon-add position-left"></i> New Department</a>
-                    <a href="/Department/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Departments</a>
+                    <a href="/Epost/index/" class="btn btn-primary"><i class="icon-add position-left"></i> List All Book Chapters</a>
                 </div>
             </div>
             <a class="heading-elements-toggle"><i class="icon-menu"></i></a>
-        </div>
+        </div>*@
         <div style="margin-bottom: 0; border-bottom: 0; box-shadow: none;" class="breadcrumb-line">
             <ul class="breadcrumb">
                 <li><a href="/Home/"><i class="icon-home2 position-left"></i> Home</a></li>
-                <li><a href="/Department/index/">Departments</a></li>
+                <li><a href="/Epost/index/">List All Book Chapters</a></li>
             </ul>
         </div>
     </div>
 }
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="tabbable">
-            <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="active">
-                    @Html.ActionLink("Departments", "Index", "Departments", new { @class = "fa fa-tasks label-icon-sm" })
-                </li>
-            </ul>
-            <div class="tab-content">
-                <table class="table datatable-button-html5-basic" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                    <thead>
-                        <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
-                                @Html.DisplayNameFor(model => model.name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.isactive)
-                            </th>
-                           
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+   
+       
                         @foreach (var item in Model)
                         {
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">
-                                    @Html.DisplayFor(modelItem => item.name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.isactive)
-                                </td>
-                               
-                                <td class="text-center">
-                                    @Html.ActionLink("Edit", "Edit", "Department", new { id = item.id }, new { @class = "btn btn-primary btn-xs" })
-                                </td>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="tabbable">
+                                        <div class="tab-content"style="margin:15px;">
+                                            <div class="row">
+                                                <h3>
+                                                    @item.title
+                                                </h3>
+                                            </div>
+                                            <div class="row">
+                                                @MvcHtmlString.Create(HttpUtility.HtmlDecode(item.Description))
 
-
-                            </tr>
+                                            </div>
+                                            <div class="row">
+                                                <button class="btn btn-primary" value="Please Proceed with Registration of Post" id="understandbuton">Please Proceed with Registration of Post</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+                           
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery(document).on("click", ".postclick", function () {
+        var url = '/Epost/PostClickSave';
+        var postid = $(this).attr("data-postid");
+      
+        $.ajax({
+            url: url,
+            data: {
+                id: postid
+               
+            },
+            type: 'POST',
+
+        }).done(function () {
+            location.href='/epost/details/'+postid;
+           // return false;
+        });
+        return false;
+    });
+});
+</script>

@@ -11,7 +11,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web;
 using EmployeesPortal.Web.Contexts;
-
+using EmplyeesPortal.Core;
 namespace EmployeesPortal.Web.Models
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
