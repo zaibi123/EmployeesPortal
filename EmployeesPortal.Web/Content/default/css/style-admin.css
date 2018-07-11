@@ -2,18 +2,18 @@
     background-color:white;
 }
 
-.ajaxloader {
+/*.ajaxloader {
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-left: -64px; /* half width of the spinner gif */
-    margin-top: -64px; /* half height of the spinner gif */
+    margin-left: -64px;
+    margin-top: -64px; 
     text-align:center;
     z-index:99999;
     overflow: auto;
-    width: 128px; /* width of the spinner gif */
-    height: 130px; /*hight of the spinner gif +2px to fix IE8 issue */
-}
+    width: 128px; 
+    height: 130px; 
+}*/
 div.AnyTime-win {z-index:9999}
 .validation-summary-valid { display:none; }
 

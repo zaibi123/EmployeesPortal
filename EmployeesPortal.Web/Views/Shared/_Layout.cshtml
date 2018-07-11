@@ -17,7 +17,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="~/Scripts/default/plugins/autosize/autosize.js" type="text/javascript"></script>
 </head>
-<body class="sidebar-xs">
+<body >@*class="sidebar-xs"*@
     <!-- Main navbar -->
     <div class="navbar navbar-inverse">
         <div class="navbar-header">
@@ -192,9 +192,9 @@
         </div>
     </div>
     <!-- Spinner -->
-    <div id="spinner" class="ajaxloader" style="display:none;">
+    @*<div id="spinner" class="ajaxloader" style="display:none;">
         <img id="img-spinner" src="~/Content/images/loader.gif" alt="Loading" />
-    </div>
+    </div>*@
     <script type="text/javascript">
         $(document).ajaxError(function (xhr, props) {
             if (props.status === 403) {

@@ -13,7 +13,7 @@ using System.Data.Entity;
 
 namespace EmployeesPortal.Web.Controllers
 {
-    [CustomAuthorizeAttribute(Roles = "Admin,Employee")]
+   // [CustomAuthorizeAttribute(Roles = "Admin,Employee")]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -33,9 +33,14 @@ namespace EmployeesPortal.Web.Controllers
 
         public ActionResult LoadChapters(int id)
         {
-            var list = db.Post.Where(x => x.postcategoryid == id).ToList();
+            db.Configuration.ProxyCreationEnabled = false;
+            var list = db.Post.Where(x=>x.PostCategory.id==id).Select(x=>x.chaptername).ToList();
 
-            return Json(new {success= true, chapterlist= list });
+            //return Json(list.Select(x=> new {
+            //    chaptername=x.chaptername
+            //}) ,JsonRequestBehavior.AllowGet);
+            return Json(list ,JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult Contact()
